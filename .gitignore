@@ -1,3 +1,7 @@
 node_modules
 dist
+<<<<<<< HEAD
 .parcel-cache
+=======
+.parcel-cache
+>>>>>>> version-M
