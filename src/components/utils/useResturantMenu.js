@@ -6,6 +6,9 @@
 
 
  const useResturantMenu = (restID)=>{
+  console.log(
+    "abc"
+  )
 
   const [restInfo, setRestInfo] = useState(null);
     
