@@ -1,5 +1,5 @@
  import { useEffect, useState } from "react";
- import { MENU_API_URL } from "constants";
+ import { MENU_API_URL } from "./constants";
  
 
 
@@ -14,12 +14,22 @@
   }, []);
 
   const fetchMenu = async () => {
-    const response = await fetch(MENU_API_URL + restID +'&catalog_qa=undefined&submitA');
-    const json = await response.json();
-    setRestInfo(json.data);
-    // console.log(json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card.itemCards)
+    try {
+      const response = await fetch(MENU_API_URL + restID);
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok.');
+      }
+  
+      const myData = await response.json();
+      
+      setRestInfo(myData.data);
+    } catch (error) {
+      console.error('Error fetching menu:', error);
+      // Handle error (e.g., show error message, retry logic)
+    }
   };
-
+  
 
   
 
