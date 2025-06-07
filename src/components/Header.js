@@ -1,5 +1,5 @@
 import React from 'react';
-import { LOGO_URL } from './utils/constants';
+import  LOGO  from '../assets/logo.png';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
     return (
         <header>
             <div className='logo-container'>
-                <img src={LOGO_URL} ></img>
+                <img src={LOGO} className='' ></img>
             </div>
             <ul className='nav-item'>
                 <li><Link to='/'>Home</Link> </li>

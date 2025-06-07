@@ -1,11 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-const parent = React.createElement(
-  "div",
-  { id: "parent" },
-  React.createElement("h1", { id: "heading" }, "Manisha")
-);
 
+// Header Component
 const Header = () => {
   return (
     <header>
@@ -30,6 +26,7 @@ const Header = () => {
   );
 };
 
+// Data for restaurants
 const restoList = [
   {
     id: 1,
@@ -78,36 +75,42 @@ const restoList = [
   },
 ];
 
+// RestoCard Component
 const RestoCard = (props) => {
   const { name, cuisine, cost_for_two, rating, delivery_timing, image_src } =
     props.restoData;
+
   return (
     <div className="card">
       <img src={image_src} alt="Restaurant Image" className="card-image" />
       <div className="card-content">
         <h2 className="restaurant-name">{name}</h2>
         <p className="cuisine">Cuisine: {cuisine}</p>
-        <p className="cost-for-two">Cost for Two: $${cost_for_two}</p>
+        <p className="cost-for-two">Cost for Two: ${cost_for_two}</p>
         <p className="rating">Rating: {rating} ⭐</p>
-        <p className="delivery-timing">Delivery: ${delivery_timing}</p>
+        <p className="delivery-timing">Delivery: {delivery_timing}</p>
       </div>
     </div>
   );
 };
 
-
+// RestoBody Component
 const RestoBody = () => {
-    return(
-        // <RestoCard restoData={restoList[0]} />/
-        <div className="card-container">
-            { restoList.map((restaurant)=>{
-            return <RestoCard key={restaurant.id} restoData={restaurant} />
-        })}
-        </div>
-       
-    )
+  return (
+    <div className="card-container">
+      {restoList.map((restaurant, index) => {
+        return (
+          <RestoCard
+            key={restaurant.info.id-index} // Use id directly as key, as it's already unique
+            restoData={restaurant}
+          />
+        );
+      })}
+    </div>
+  );
 };
 
+// Main App Layout
 const AppLayout = () => {
   return (
     <div>
@@ -117,6 +120,6 @@ const AppLayout = () => {
   );
 };
 
+// Rendering to DOM
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
 root.render(<AppLayout />);

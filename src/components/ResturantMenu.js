@@ -7,10 +7,10 @@ const RestaurantMenu = () => {
   const { restID } = useParams();
   const restInfo = useResturantMenu(restID);
 
-  // Display shimmer while loading
-  // if (!restInfo) {
-  //   return <Shimmer />;
-  // }
+  // Display shimmer while loading if restInfo is not available
+  if (!restInfo) {
+    return <Shimmer />;
+  }
 
   // Destructure restaurant details safely
   const { name, costForTwo, cuisines, avgRating } =
@@ -22,6 +22,7 @@ const RestaurantMenu = () => {
 
   return (
     <div className="restaurantMenuContainer">
+      {/* Restaurant Info */}
       <h1 className="restaurantName">{name || "Restaurant Name Unavailable"}</h1>
       <p className="card-rating">Rating: {avgRating || "N/A"}</p>
       <h2 className="card-description">
@@ -29,10 +30,11 @@ const RestaurantMenu = () => {
       </h2>
       <p className="card-description">Price: {costForTwo || "N/A"}</p>
 
+      {/* Menu Items */}
       <ul className="menuList">
         {itemCards.length ? (
-          itemCards.map((item) => (
-            <li key={item.card?.info?.id}>
+          itemCards.map((item, index) => (
+            <li key={item.card?.info?.id + "_" + index}> {/* Concatenate id with index */}
               {item.card?.info?.name || "Item Name Unavailable"} - ₹
               {item.card?.info?.price / 100 || "N/A"}{" "}
               {item.card?.info?.description || ""}
