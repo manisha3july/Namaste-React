@@ -25,16 +25,14 @@ const Body = () => {
         setFilteredResto(allRestaurants || []);
     };
 
-    const handleSearch = () => {
-         console.log("Hotels Search results 1 :"); 
-        const searchItem = listOfResto.filter((item) =>
-            item.info.name.toLowerCase().includes(searchText.toLowerCase())
-        );
+ const handleSearch = () => {
+    const searchItem = listOfResto.filter((item) =>
+        item.info.name.toLowerCase().includes(searchText.toLowerCase())
+    );
 
-        console.log("Hotels Search results :", searchItem); 
-
-        setFilteredResto(searchItem);
-    };
+    console.log('Hotel Search results:', searchItem); // Safe to log here
+    setFilteredResto(searchItem);
+};
 
     const handleTopRated = () => {
         const topRated = listOfResto.filter(
